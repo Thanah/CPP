@@ -1,0 +1,22 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build with g++",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",            // Include debug information
+                "${file}",       // Current file to compile
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}.exe" // Output file
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Task to build C++ files using g++"
+        }
+    ]
+}
