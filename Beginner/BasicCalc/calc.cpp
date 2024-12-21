@@ -3,7 +3,6 @@
 #include <stack>
 #include <sstream>
 #include <cctype>
-#include <limits>
 
 
 using namespace std;
@@ -88,17 +87,22 @@ int main(){
     do{
         exitres = 'n';
         string expression;
-        cout << "Enter expression: ";
+        cout << "Expression: ";
         getline(cin, expression);   //record input
+        if (isalpha(expression[0]) && expression.length() == 1){
+            exitres = expression[0];
+            exitres = tolower(exitres);
+            if(exitres != 'q'){
+                exitres = 'n';
+                cout << "Invalid entry" << endl;
+                continue;
+            }//only accept q if alphabetic, otherwise restart loop
+        }//check if input is an alphabetic char and length 1
         int result = arithmetic(expression);
-        cout << "Result: " << result << endl;
-        //exit condition
-        cout << "Do you want to exit now? [Y/N]: ";
-        cin >> exitres;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        exitres = tolower(exitres);
+        cout << "Result: " << result << endl;        
+        
     }
-    while(exitres =='n');
+    while(exitres !='q');
 
     return 0;
 }
